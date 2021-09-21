@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:app_anotacoes/Pages/Homepage/bloc/homepage_bloc.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

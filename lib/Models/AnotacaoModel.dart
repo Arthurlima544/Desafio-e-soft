@@ -1,8 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
-
-@immutable
-class AnotacaoModel extends Equatable {
+class AnotacaoModel {
   late String id;
   late String titulo;
   late String descricao;
@@ -14,9 +10,6 @@ class AnotacaoModel extends Equatable {
     this.descricao,
     this.concluido,
   );
-
-  @override
-  List<Object?> get props => [titulo, descricao, concluido];
 
   AnotacaoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

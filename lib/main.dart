@@ -2,6 +2,7 @@ import 'package:app_anotacoes/Pages/Homepage/HomePage.dart';
 import 'package:app_anotacoes/Pages/Homepage/bloc/homepage_bloc.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,8 +18,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Provider(
-          create: (context) => HomepageBloc(),
+        home: BlocProvider(
+          create: (_) => HomepageBloc(HomepageInitial()),
           child: HomePage(),
         ));
   }

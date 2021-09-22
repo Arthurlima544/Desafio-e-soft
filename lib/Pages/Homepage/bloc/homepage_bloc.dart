@@ -2,6 +2,7 @@ import 'package:app_anotacoes/Models/AnotacaoModel.dart';
 import 'package:app_anotacoes/data/database.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:uuid/uuid.dart';
 
 part 'homepage_event.dart';
 part 'homepage_state.dart';
@@ -11,13 +12,15 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
   Stream<HomepageState> mapEventToState(event) async* {
     if (event is HomeFetchList) {
       yield HomeLoadingState();
-    }
-  }
-
-  Stream<HomepageState> _fetchAnotacoes() async* {
-    try {
-      final List<AnotacaoModel> list = await AnotacaoDatabase.getAll();
+      final List<AnotacaoModel> list = await AnotacaoDatabase().getList();
       yield HomeLoadedState(list: list);
-    } catch (e) {}
+    }
+    if (event is CreateAnotation) {
+      var uuid = Uuid();
+      String id = uuid.v4();
+      await AnotacaoDatabase()
+          .create(AnotacaoModel(id, event.titulo, event.descricao, false));
+      yield HomeLoadingState();
+    }
   }
 }

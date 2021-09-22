@@ -21,6 +21,18 @@ class HomePage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
+          if (state is HomeLoadedState) {
+            return ListView.builder(
+              itemCount: 3,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text("Teste"),
+                  tileColor:
+                      Colors.primaries[Random().nextInt(Colors.accents.length)],
+                );
+              },
+            );
+          }
           return Container(
             padding: EdgeInsets.all(10),
             child: ListTile(

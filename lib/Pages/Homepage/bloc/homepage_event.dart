@@ -12,3 +12,10 @@ class HomeFetchList extends HomepageEvent {}
 class HomeFetchListWithError extends HomepageEvent {}
 
 class HomeFetchEmpytyList extends HomepageEvent {}
+
+class CreateAnotation extends HomepageEvent {
+  final String titulo;
+  final String descricao;
+
+  CreateAnotation(this.titulo, this.descricao);
+}

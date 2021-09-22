@@ -11,9 +11,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("My Things"),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.read<HomepageBloc>().add(HomeFetchList()),
-      ),
       body: BlocBuilder<HomepageBloc, HomepageState>(
         builder: (context, state) {
           if (state is HomeLoadingState) {
@@ -23,24 +20,38 @@ class HomePage extends StatelessWidget {
           }
           if (state is HomeLoadedState) {
             return ListView.builder(
-              itemCount: 3,
+              itemCount: state.list.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text("Teste"),
-                  tileColor:
-                      Colors.primaries[Random().nextInt(Colors.accents.length)],
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    title: Text(state.list[index].titulo),
+                    tileColor: Colors
+                        .primaries[Random().nextInt(Colors.accents.length)],
+                  ),
                 );
               },
             );
           }
           return Container(
-            padding: EdgeInsets.all(10),
-            child: ListTile(
-              title: Text("Teste"),
-              tileColor:
-                  Colors.primaries[Random().nextInt(Colors.accents.length)],
-            ),
-          );
+              padding: EdgeInsets.all(10),
+              child: Center(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        context.read<HomepageBloc>().add(HomeFetchList());
+                      },
+                      child: Text(
+                        "Atualizar",
+                      ))));
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          context
+              .read<HomepageBloc>()
+              .add(CreateAnotation("Outro teste", "Outra Descricao"));
+          context.read<HomepageBloc>().add(HomeFetchList());
         },
       ),
     );

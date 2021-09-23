@@ -1,6 +1,6 @@
 # app_anotacoes
 
-A new Flutter project.
+ - [![Watch the video](https://youtu.be/nwnW7wZP3mk)]
 
 ## Getting Started
 

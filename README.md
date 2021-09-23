@@ -1,6 +1,6 @@
 # app_anotacoes
 
- - [![Watch the video]](https://youtu.be/nwnW7wZP3mk)
+ - [![Assista o aplicativo Clicando nesse link]](https://youtu.be/nwnW7wZP3mk)
 
 ## Getting Started
 

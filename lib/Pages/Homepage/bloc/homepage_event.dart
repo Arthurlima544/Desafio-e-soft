@@ -25,3 +25,9 @@ class UpdateAnotation extends HomepageEvent {
 
   UpdateAnotation({required this.model});
 }
+
+class DeleteAnotation extends HomepageEvent {
+  final String id;
+
+  DeleteAnotation({required this.id});
+}

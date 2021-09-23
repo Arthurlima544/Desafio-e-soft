@@ -30,5 +30,12 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
       await AnotacaoDatabase().update(model);
       yield AnotacaoModelLoadedState(model: model);
     }
+    if (event is DeleteAnotation) {
+      yield HomeLoadingState();
+      String id = event.id;
+      await AnotacaoDatabase().delete(id);
+      final List<AnotacaoModel> list = await AnotacaoDatabase().getList();
+      yield HomeLoadedState(list: list);
+    }
   }
 }

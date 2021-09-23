@@ -32,6 +32,13 @@ class HomePage extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListTile(
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        BlocProvider.of<HomepageBloc>(context)
+                            .add(DeleteAnotation(id: state.list[index].id));
+                      },
+                    ),
                     onTap: () => _updateAnotacao(context, state.list[index]),
                     title: Text(state.list[index].titulo),
                     tileColor: Colors

@@ -48,24 +48,15 @@ class HomePage extends StatelessWidget {
               },
             );
           }
+          if (state is HomeLoadedEmptyListState) {
+            return Center(
+              child: Text("Não Há dados"),
+            );
+          }
           BlocProvider.of<HomepageBloc>(context).add(HomeFetchList());
           return Center(
             child: CircularProgressIndicator(),
           );
-          /* return Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Center(
-                      child: ElevatedButton(
-                          onPressed: () {
-                            context.read<HomepageBloc>().add(HomeFetchList());
-                          },
-                          child: Text(
-                            "Atualizar",
-                          ))),
-                ],
-              )); */
         },
       ),
       floatingActionButton: FloatingActionButton(

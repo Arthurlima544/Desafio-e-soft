@@ -20,3 +20,5 @@ class AnotacaoModelLoadedState extends HomepageState {
 
   AnotacaoModelLoadedState({required this.model});
 }
+
+class HomeLoadedEmptyListState extends HomepageState {}

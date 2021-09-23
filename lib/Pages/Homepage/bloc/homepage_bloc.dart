@@ -13,7 +13,11 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
     if (event is HomeFetchList) {
       yield HomeLoadingState();
       final List<AnotacaoModel> list = await AnotacaoDatabase().getList();
-      yield HomeLoadedState(list: list);
+      if (list.isEmpty) {
+        yield HomeLoadedEmptyListState();
+      } else {
+        yield HomeLoadedState(list: list);
+      }
     }
     if (event is CreateAnotation) {
       var uuid = Uuid();
@@ -35,7 +39,11 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
       String id = event.id;
       await AnotacaoDatabase().delete(id);
       final List<AnotacaoModel> list = await AnotacaoDatabase().getList();
-      yield HomeLoadedState(list: list);
+      if (list.isEmpty) {
+        yield HomeLoadedEmptyListState();
+      } else {
+        yield HomeLoadedState(list: list);
+      }
     }
   }
 }

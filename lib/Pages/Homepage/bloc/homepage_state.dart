@@ -14,3 +14,9 @@ class HomeLoadedState extends HomepageState {
 
   HomeLoadedState({required this.list});
 }
+
+class AnotacaoModelLoadedState extends HomepageState {
+  final AnotacaoModel model;
+
+  AnotacaoModelLoadedState({required this.model});
+}

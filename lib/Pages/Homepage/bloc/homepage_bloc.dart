@@ -21,6 +21,14 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
       await AnotacaoDatabase()
           .create(AnotacaoModel(id, event.titulo, event.descricao, false));
       yield HomeLoadingState();
+      final List<AnotacaoModel> list = await AnotacaoDatabase().getList();
+      yield HomeLoadedState(list: list);
+    }
+    if (event is UpdateAnotation) {
+      yield HomeLoadingState();
+      AnotacaoModel model = event.model;
+      await AnotacaoDatabase().update(model);
+      yield AnotacaoModelLoadedState(model: model);
     }
   }
 }

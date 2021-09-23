@@ -19,3 +19,9 @@ class CreateAnotation extends HomepageEvent {
 
   CreateAnotation(this.titulo, this.descricao);
 }
+
+class UpdateAnotation extends HomepageEvent {
+  final AnotacaoModel model;
+
+  UpdateAnotation({required this.model});
+}

@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        debugShowCheckedModeBanner: false,
         home: BlocProvider(
           create: (_) => HomepageBloc(HomeLoadingState()),
           child: HomePage(),

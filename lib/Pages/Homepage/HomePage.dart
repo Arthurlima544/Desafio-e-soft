@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Things"),
+        title: Text("Anotações"),
       ),
       body: BlocBuilder<HomepageBloc, HomepageState>(
         bloc: BlocProvider.of<HomepageBloc>(context),
@@ -41,8 +41,8 @@ class HomePage extends StatelessWidget {
                     ),
                     onTap: () => _updateAnotacao(context, state.list[index]),
                     title: Text(state.list[index].titulo),
-                    tileColor: Colors
-                        .primaries[Random().nextInt(Colors.accents.length)],
+                    tileColor:
+                        Colors.accents[Random().nextInt(Colors.accents.length)],
                   ),
                 );
               },
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
             builder: (context) => BlocProvider(
                   create: (BuildContext context) => HomepageBloc(
                       AnotacaoModelLoadedState(model: anotacaoModel)),
-                  child: UpdateAnotationWidget(),
+                  child: UpdateAnotationWidget(anotacaoModel: anotacaoModel),
                 )))
         .then((value) =>
             BlocProvider.of<HomepageBloc>(blocContext).add(HomeFetchList()));
